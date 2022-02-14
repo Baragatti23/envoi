@@ -1,0 +1,718 @@
+:root{
+    --header: 60px;
+    --aside: 350px;
+    --aside: clamp(250px,26%,400px);
+    --color: rgb(76, 137, 250);
+    --cover_width: 281px;
+    --cover_height: 332px;
+    --cover_titre: 25px;
+    --coverPage_width: 125px;
+    --coverPage_height: 170px;
+    --page_width: 264px;
+    --page_height: 376px;
+}
+body{
+    overflow: hidden;
+}
+.CreataAlbum--header{
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    border-bottom: 1px solid rgba(0,0,0,.035);
+    position: relative;
+}
+.CreataAlbum--header--details{
+    width: 400px;
+    height: 100%;
+    position: absolute;
+    left: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    transform: translateX(-50%);
+    justify-content: center;
+    color: rgb(134, 141, 152);
+    font-size: 13px;
+}
+.CreataAlbum--header--details strong{
+    color:rgb(38, 40, 44);
+    font-size: 14px;
+    text-transform: uppercase;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.CreataAlbum--header--details button{
+    background-color: transparent;
+    padding: 0 4px;
+    color: rgb(245, 31, 77);
+    color: var(--color);
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+}
+.CreataAlbum--header--details button svg{
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+}
+.CreataAlbum--header--details p{
+    width: 100%;
+    margin-top: 7px;
+    text-align: center;
+}
+.CreataAlbum--header--btns,
+.CreataAlbum--header--finished{
+    display: flex;
+    align-items: center;
+}
+.CreataAlbum--header--btns button:first-child,
+.CreataAlbum--header--finished button:first-child{
+    margin-right: 12px;
+}
+.CreataAlbum--header--finished button:first-child svg{
+    width: 22px;
+    height: 22px;
+}
+.CreataAlbum--header--finished button:last-child svg{
+    width: 19px;
+    height: 19px;
+    margin-right: 5px;
+}
+.CreataAlbum--header--btns button,
+.CreataAlbum--header--finished button{
+    height: 38px;
+    padding: 0 17px;
+    display: flex;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+    align-items: center;
+    cursor: pointer;
+}
+.CreataAlbum--header--btns button svg,
+.CreataAlbum--header--finished button svg{
+    width: 13px;
+    height: 13px;
+}
+.CreataAlbum--header--finished button{
+    height: 40px;
+    padding: 22px;
+    border-radius: 60px;
+}
+.CreataAlbum--content{
+    display: flex;
+    flex-wrap: wrap;
+}
+.CreataAlbum--content main{
+    width: calc(100% - var(--aside));
+}
+.CreataAlbum--content aside{
+    width: var(--aside);
+    border-left: 1px solid rgba(0,0,0,.035);
+}
+.CreataAlbum--content aside,
+.CreataAlbum--content main{
+    height: calc(100vh - var(--header));
+}
+.CreataAlbum--content main{
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.CreataAlbum--content aside header{
+    height: var(--header);
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,.035);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.CreataAlbum--content aside header > div{
+    display: inline-flex;
+}
+.CreataAlbum--content aside header > div button:first-child{
+    margin-right: 15px;
+}
+.CreataAlbum--content aside header > div button svg{
+    width: 18px;
+    height: 18px;
+}
+.CreataAlbum--content aside header > div button{
+    width: 88px;
+    height: 37px;
+    position: relative;
+    top: 12px;
+    background-color: #fdfaf2;
+    border-radius: 14px 14px 0 0;
+    padding-top: 8px;
+    cursor: pointer;
+    text-align: center;
+}
+.CreataAlbum--content aside header > div button span{
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(38, 40, 44);
+    position: relative;
+}
+.CreataAlbum--content aside header > div button svg{
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%,-40%);
+}
+.CreataAlbum--content aside header > div button._active_ span::before{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: mediumvioletred;
+    /* background-color: #fc2f7a; */
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.CreataAlbum--aside--main{
+    width: 100%;
+    height: calc(100% -  var(--header));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.CreataAlbum--aside--empty{
+    text-align: center;
+    user-select: none;
+}
+._hide_{
+    display: none !important;
+}
+.CreataAlbum--aside--empty svg{
+    width: 80px;
+}
+.CreataAlbum--aside--empty svg *{
+    fill: rgb(250, 66, 137);
+    fill: mediumvioletred;
+}
+.CreataAlbum--aside--empty p{
+    width: 200px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #5e646e;
+    line-height: 19px;
+}
+.CreataAlbum--aside--empty button{
+    height: 40px;
+    border-radius: 50px;
+    margin: auto;
+    margin-top: 20px;
+    font-size: 13PX;
+    font-weight: bold;
+    padding: 0 30px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+.CreataAlbum--aside--photos,
+.CreataAlbum--aside--styles{
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+.CreataAlbum--aside--photos-title{
+    position: relative;
+    margin-bottom: 20px;
+}
+.CreataAlbum--aside--photos-hide input{
+    display: none;
+}
+.CreataAlbum--aside--photos-hide label{
+    display: flex;
+    align-items: center;
+    color: #26282c;
+    font-size: 14px;
+}
+.CreataAlbum--aside--photos-hide label::before{
+    content: "\2713";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    width: 16px;
+    height: 16px;
+    border-radius: 6px;
+    border: 2px solid #9C88FF;
+    margin-right: 8px;
+    transition: all .3s ease;
+}
+.CreataAlbum--aside--photos-hide input:checked + label::before{
+    background-color: #9C88FF;
+}
+.CreataAlbum--aside--photos h2,
+.CreataAlbum--aside--styles h2{
+    font-size: 15px;
+    color: rgb(19, 20, 22);
+}
+.CreataAlbum--aside--photos--grid{
+    width: 100%;
+    display: grid;
+    max-height: calc(100% - 67px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    grid-template-columns: repeat(auto-fill,minmax(90px,1fr));
+    gap: 13px;
+    padding-top: 25px;
+}
+.CreataAlbum--aside--photos--grid button,
+.CreataAlbum--aside--photos--grid figure{
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f5f6;
+    display: flex;
+    aspect-ratio: 1/1;
+}
+.CreataAlbum--aside--photos--grid button{
+    background-color: rgb(240, 242, 250);
+    color: rgb(31, 70, 223);
+    transition: all .3s ease;
+    cursor: pointer;
+}
+.CreataAlbum--aside--photos--grid button:hover {
+    background-color: rgb(219, 225, 248);
+}
+.CreataAlbum--aside--photos--grid button svg{
+    width: 25px;
+    height: 25px;
+    display: block;
+    margin: auto;
+}
+.CreataAlbum--aside--photos--grid button b{
+    /* text-transform: uppercase; */
+    text-align: center;
+    display: block;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    margin-top: 8px;
+    font-size: 12px;
+    opacity: 1;
+    position: static;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    color: inherit;
+    line-height: 15px;
+    color: rgb(19, 20, 22);
+}
+.CreataAlbum--aside--photos--grid figure::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.25);
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    transition: all .3s ease;
+    cursor: move;
+    left: 0;
+}
+.CreataAlbum--aside--photos--grid figure:hover::before{
+    opacity: 1;
+}
+.CreataAlbum--aside--photos--grid figure>div{
+    height: 100%;
+    width: 100%;
+}
+.CreataAlbum--aside--photos--grid figure img{
+    width: 100%;
+    min-height: 100%;
+    display: block;
+}
+.CreataAlbum--aside--styles{
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.CreataAlbum--aside--styles--grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(90px,1fr));
+    grid-auto-rows: 1fr;
+    grid-gap: 8px;
+    gap: 8px;
+    padding: 8px 0 16px;
+    width: 100%;
+}
+.CreataAlbum--aside--styles-title{
+    margin-bottom: 20px;
+}
+.CreataAlbum--aside--styles h3{
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    color: var(--color);
+}
+.CreataAlbum--aside--styles--grid-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f5f6;
+    border-radius: 14px;
+    transition: all .15s ease;
+    aspect-ratio: 1/1;
+    padding: 8px;
+    width: 100%;
+    cursor: pointer;
+}
+.CreataAlbum--aside--styles--grid-item ._grille_{
+    display: grid;
+    grid-template-columns: (1,1fr);
+    grid-template-rows: (1,1fr);
+    gap: 4px;
+    width: 85%;
+    height: 85%;
+}
+.CreataAlbum--aside--styles--grid-item ._grille_ div{
+    background-color: #616364;
+}
+.CreataAlbum--aside--styles--grid._pages_ .CreataAlbum--aside--styles--grid-item{
+    /* height: 120px; */
+    padding: 0;
+    aspect-ratio: 1/1.5;
+    overflow: hidden;
+}
+.CreataAlbum--aside--styles--grid-item span{
+    width: 70%;
+    height: 100%;
+    display: block;
+    background-color: rgb(248, 171, 225);
+    display: flex;
+}
+.CreataAlbum--aside--styles--grid._pages_ .CreataAlbum--aside--styles--grid-item span{
+    height: auto;
+    background-color: #88898a;
+}
+.CreataAlbum--aside--styles--grid-item svg{
+    max-width: 100%;
+    max-height: 100%;
+}
+.CreataAlbum--content main{
+    --bg: 310px;
+}
+.CreataAlbum--main--bgPortal{
+    height: var(--bg);
+    background: linear-gradient(45deg, #ff357f 0%, mediumvioletred 50%);
+    background: #fc2f7a;
+    background: var(--color);
+    position: relative;
+}
+.CreataAlbum--main--wrapPages{
+    min-height: calc(100% - var(--bg));
+    background-color: rgb(252,252,252);
+    position: relative;
+}
+.CreataAlbum--main--wrapPages::before{
+    content: "";
+    width: 100%;
+    height: 100px;
+    border-radius: 50px 50px 0 0;
+    background-color: rgb(252,252,252);
+    position: absolute;
+    top: 0;
+    transform: translateY(-50%);
+    width: 100%;
+}
+.CreataAlbum--main--bgPortal--couverture{
+    width: var(--cover_width);
+    height: var(--cover_height);
+    display: flex;
+    position: absolute;
+    background-color: #fff;
+    left: 50%;
+    box-shadow: 0 0 20px rgba(0,0,0,.15);
+    bottom: 0;
+    transform: translateX(-50%) translateY(35%);
+    z-index: 5;
+}
+.CreataAlbum--main--bgPortal--couverture h1{
+    color: #fff;
+    position: absolute;
+    top: -30px;
+    font-size: 16px;
+    width: 100%;
+    text-align: center;
+}
+.CreataAlbum--main--bgPortal--couverture>button{
+    position: absolute;
+    bottom: -50px;
+    height: 35px;
+    width: 60%;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    left: 50%;
+    cursor: pointer;
+    transform: translateX(-50%);
+    background-color: #fff;
+    box-shadow: 0 8px 28px #b7d4ff;
+    color: rgb(0, 100, 246);
+}
+.CreataAlbum--main--bgPortal--couverture-title{
+    width: var(--cover_titre);
+    position: relative;
+    border-right: 1px solid rgba(0,0,0,.035);
+}
+.CreataAlbum--main--bgPortal--couverture-title span{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: rotate(90deg) translateX(-50%) translateY(100%);
+    font-size: 13px;
+}
+.CreataAlbum--main--bgPortal--couverture-page{
+    width: calc(100% - var(--cover_titre));
+    position: relative;
+    background-color: #fcd5e3;
+}
+.CreataAlbum--main--bgPortal--couverture-page img{
+    width: 100%;
+    min-height: 100%;
+}
+.CreataAlbum--main--bgPortal--couverture-page_title{
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 13px;
+}
+.CreataAlbum--main--bgPortal--couverture-canva{
+    background-color: rgb(251,251,251);
+    width: var(--coverPage_width);
+    height: var(--coverPage_height);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    border: 2px dashed #777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.CreataAlbum--main--bgPortal--couverture-canva:hover{
+    background-color: rgb(245,245,245);
+}
+.CreataAlbum--main--bgPortal--couverture-canva svg{
+    width: 24px;
+    height: 24px;
+}
+.CreataAlbum--main--bgPortal--couverture--btns,
+.CreataAlbum--main--wrapPages--pargeLeft--btns,
+.CreataAlbum--main--wrapPages--pargeRight--btns{
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    transition: all .2s ease;
+    top: 50%;
+}
+.CreataAlbum--main--bgPortal--couverture--btns{
+    right: 12px;
+    transform: translateY(-50%) translateX(100%);
+}
+.CreataAlbum--main--wrapPages--pargeRight--btns{
+    right: 0;
+    transform: translateY(-50%) translateX(50%);
+}
+.CreataAlbum--main--wrapPages--pargeLeft--btns{
+    left: 0;
+    transform: translateY(-50%) translateX(-50%);
+}
+.CreataAlbum--main--bgPortal--couverture:hover .CreataAlbum--main--bgPortal--couverture--btns,
+.CreataAlbum--main--wrapPages article:hover .CreataAlbum--main--wrapPages--pargeLeft--btns,
+.CreataAlbum--main--wrapPages article:hover .CreataAlbum--main--wrapPages--pargeRight--btns{
+    opacity: 1;
+}
+.CreataAlbum--main--bgPortal--couverture--btns button,
+.CreataAlbum--main--wrapPages--pargeLeft--btns button,
+.CreataAlbum--main--wrapPages--pargeRight--btns button{
+    display: flex;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #fff;
+    background-color: #152934;
+    display: flex;
+    transition: all .2s ease;
+    align-items: center;
+    justify-content: center;
+}
+.CreataAlbum--main--bgPortal--couverture--btns button:hover,
+.CreataAlbum--main--wrapPages--pargeLeft--btns button:hover,
+.CreataAlbum--main--wrapPages--pargeRight--btns button:hover{
+    transform: scale(1.15);
+}
+.CreataAlbum--main--bgPortal--couverture--btns button svg,
+.CreataAlbum--main--wrapPages--pargeLeft--btns svg,
+.CreataAlbum--main--wrapPages--pargeRight--btns svg{
+    width: 24px;
+    height: 24px;
+}
+.CreataAlbum--main--wrapPages--content{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 36px;
+    padding-top: 200px;
+    position: relative;
+}
+.CreataAlbum--main--wrapPages--text{
+    width: 100%;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+}
+.CreataAlbum--main--wrapPages--text h2{
+    text-transform: uppercase;
+    font-size: 15px;
+    color: rgb(21, 41, 52);
+}
+.CreataAlbum--main--wrapPages--grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(calc(var(--page) * 2),1fr));
+    gap: 63px 20px;
+}
+.CreataAlbum--main--wrapPages--grid article{
+    height: var(--page_height);
+    display: flex;
+}
+.CreataAlbum--main--wrapPages--pargeLeft,
+.CreataAlbum--main--wrapPages--pargeRight{
+    width: var(--page_width);
+    height: var(--page_height);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+}
+.CreataAlbum--main--wrapPages--pargeLeft ._bgBox_,
+.CreataAlbum--main--wrapPages--pargeRight ._bgBox_{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.185);
+}
+.CreataAlbum--main--wrapPages--pargeLeft ._numPage_,
+.CreataAlbum--main--wrapPages--pargeRight ._numPage_{
+    position: absolute;
+    left: 0;
+    top: -35px;
+    font-weight: bold;
+    color: rgb(140, 155, 165);
+    font-size: 14px;
+    padding: 2px 8px;
+}
+.CreataAlbum--main--wrapPages--pargeLeft ._flexCenter_,
+.CreataAlbum--main--wrapPages--pargeRight ._flexCenter_{
+    width: 100%;
+    height: 100%;
+}
+._gridPage_{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(1,1fr);
+    width: 200px;
+    height: 200px;
+    background: linear-gradient();
+    position: relative;
+}
+.CreataAlbum--main--wrapPages--pargeLeft:hover ._gridPage_,
+.CreataAlbum--main--wrapPages--pargeRight:hover ._gridPage_{
+    z-index: 5;
+}
+.CreataAlbum--main--wrapPages--imgPage{
+    border: 2px dashed #999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    overflow: hidden;
+}
+.CreataAlbum--main--wrapPages--imgPage._noBorder_{
+    border-color: transparent;
+}
+.CreataAlbum--main--wrapPages--imgPage img{
+    min-width: 100%;
+    min-height: 100%;
+}
+.CreataAlbum--main--wrapPages--imgPage::before{
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,.05);
+    opacity: 0;
+    transition: all .3s ease;
+    width: 100%;
+    height: 100%;
+}
+.CreataAlbum--main--wrapPages--imgPage:hover::before,
+.CreataAlbum--main--wrapPages--imgPage._hover_::before{
+    opacity: 1;
+}
+.CreataAlbum--main--wrapPages--pargeLeft._fullPage_ .CreataAlbum--main--wrapPages--imgPage{
+    width: var(--page_width);
+    height: var(--page_height);
+}
+.CreataAlbum--main--wrapPages--pargeLeft._selected_,
+.CreataAlbum--main--wrapPages--pargeRight._selected_{
+    box-shadow: 0 4px 24px rgb(0 0 0 / 16%), inset 0 0 0 2px rgb(44, 85, 221);
+}
+.CreataAlbum--main--wrapPages--pargeLeft._selected_._fullPage_ .CreataAlbum--main--wrapPages--imgPage,
+.CreataAlbum--main--wrapPages--pargeRight._selected_._fullPage_ .CreataAlbum--main--wrapPages--imgPage{
+    border: none;
+}
+.CreataAlbum--main--wrapPages--imgPage svg{
+    width: 40px;
+    height: 40px;
+    color: #555;
+}
+._imgDragging_{
+    position: fixed;
+    opacity: .6;
+    z-index: 10;
+    display: none;
+}
+._imgDragging_._visible_{
+    display: block;
+}
+._flexCenter_{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

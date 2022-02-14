@@ -1,0 +1,494 @@
+:root{
+    --mdl_login: 400px;
+    --input_hg: 45px;
+    --btn_hg: 50px;
+}
+.capModalLogin{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0,0,0,.75);
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(5px);
+    z-index: 50;
+    cursor: pointer;
+}
+.ModalLogin{
+    cursor: default;
+    width: var(--mdl_login);
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 80px;
+}
+
+.ModalLogin h2{
+    font-size: 35px;
+    color: rgb(51,51,51);
+    margin-bottom: 20px;
+    text-align: center;
+    position: relative;
+}
+.ModalLogin>p{
+    font-size: 15px;
+    color: rgba(128, 144, 148, 0.99);
+    line-height: 25px;
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ModalLogin>p svg{
+    width: 18px;
+    height: 18px;
+    display: none;
+    margin-right: 6px;
+}
+.ModalLogin>p._alert_ svg{
+    display: inline-flex;
+}
+.ModalLogin>p._alert_{
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+}
+.ModalLogin-inputG{
+    margin-bottom: 25px;
+    position: relative;
+}
+.ModalLogin-inputG._loader_::after,.ModalResend-loader{
+    content: "";
+    --size: 16px;
+    width: var(--size);
+    height: var(--size);
+    border: 2.5px solid rgba(0,0,0,.35);
+    border-radius: 50%;
+    position: absolute;
+    border-left-color: rgba(0,0,0,.1);
+    animation: rotar 1s ease infinite;
+    right: 15px;
+    top: 10px;
+}
+@keyframes rotar{
+    to{
+        transform: rotate(1turn);
+    }
+}
+form._err_ .ModalLogin-inputG::after,.ModalLogin-inputG._locked_::after,
+.ModalLogin-inputG._verified_::after{
+    content: "i";
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 1px solid rgba(205, 91, 91,.5);
+    background-color: rgba(205, 91, 91,.35);
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 12px;
+}
+.ModalLogin-inputG._verified_::after{
+    content: "\2713";
+    width: auto;
+    font-size: 18px;
+    top: 9px;
+    height: auto;
+    color: rgb(46, 179, 134);
+    background-color: transparent;
+    border-color: transparent;
+}
+.ModalLogin-inputG input,
+.ModalLogin form input[type=submit]{
+    display: block;
+    width: 100%;
+    height: var(--input_hg);
+    background-color: #fff;
+    color: rgb(51,51,51);
+    border-radius: 8px;
+    padding: 10px 16px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    letter-spacing: 1px;
+    transition: all .3s ease;
+    border: 2px solid rgba(0,0,0,.1);
+    display: flex;
+    align-items: center;
+}
+.ModalLogin form input[type=submit]{
+    background-color: #f82371;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    height: var(--btn_hg);
+    text-transform: uppercase;
+    justify-content: center;
+    cursor: pointer;
+    border-color: transparent;
+}
+.ModalLogin-inputG input[type=text]:focus,
+.ModalLogin-inputG input[type=password]:focus{
+    background-color: #fff;
+    border-color: rgb(252, 202, 229);
+}
+.ModalLogin--remember{
+    margin-top: 20px;
+    font-size: 13px;
+    color: rgba(0,0,0,.8);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+}
+.ModalLogin--remember a{
+    font-size: 13px;
+    position: absolute;
+    right: 0;
+    color: rgb(247, 158, 192);
+    transition: all .3s ease
+}
+.ModalLogin--remember a:hover{
+    color: rgb(253, 66, 138);
+}
+.ModalLogin--notAccount{
+    color: rgba(128, 144, 148, 0.7);
+    margin-top: 20px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(0,0,0,.05);
+}
+.ModalLogin--notAccount a{
+    margin-left: 5px;
+    color: rgba(53, 208, 247,.75);
+}
+.ModalLogin--remember input{
+    display: none;
+}
+.ModalLogin--remember._login_ label::before{
+    --hg: 17px;
+    --marge: 3px;
+    height: var(--hg);
+    width: var(--hg);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all .3s ease;
+    margin-right: 5px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid #f897bb;
+    background-color: #fadfe9;
+    box-shadow: inset 0 0 0 3px #fff;
+    content: "\2713";
+    color: transparent;
+}
+input{
+    display: none;
+}
+.ModalLogin--remember._login_ input:checked ~ label::before{
+    background-color: #f82371;
+    border-color: #f82371;
+    box-shadow: none;
+    color: white;
+}
+input:checked ~ ._toggleBtn_::before{
+    left: calc(100% - var(--marge));
+    transform: translateX(-100%) translateY(-50%);
+}
+._flex_{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+._radioCheckmark_{
+    --size: 20px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background-color: rgb(207, 217, 224,.4);
+    margin-right: 10px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: -8px;
+    transition: all .3s ease;
+}
+._radioCheckmark_ + label{
+    font-size: 14px;
+    line-height: 20px;
+}
+._radioCheckmark_::before{
+    content: "\2713";
+    font-weight: bold;
+    font-size: 12px;
+    color: rgba(128, 144, 148, 0.5);
+    transition: all .3s ease;
+}
+._radioCheckmark_ + label a{
+    text-decoration: underline;
+    color: #35d0f7;
+}
+input:checked ~ ._radioCheckmark_{
+    background-color: #DF00FF;
+}
+input:checked ~ ._radioCheckmark_::before{
+    color: #fff;
+}
+.ModalLogin-svg{
+    display: flex;
+    margin: auto;
+    --size: 90px;
+    width: var(--size);
+    height: var(--size);
+    margin-top: -30px;
+    margin-bottom: 30px;
+}
+.ModalLogin-svg svg{
+    width: var(--size);
+    height: var(--height);
+}
+.ModalResend--cap{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(3px);
+}
+.ModalResend-error{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    padding: 20px;
+    width: 50%;
+}
+.ModalResend-error h2{
+    font-size: 65px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255,.95);
+    text-shadow: 0 0 4px rgba(0,0,0,.35);
+    margin-bottom: 20px;
+    text-align: center;
+}
+.ModalResend-error._hide_{
+    display: none;
+}
+.ModalResend-error button{
+    width: 200px;
+    height: 60px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    margin-top: 40px;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 60px;
+    cursor: pointer;
+    position: relative;
+    background-color: rgb(43, 145, 241);
+}
+.ModalResend-error button svg{
+    width: 28px;
+    height: 28px;
+    margin-right: 12px;
+}
+.ModalResend-error button::before{
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 60px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+    background-color: transparent;
+    transform: translate(-50%,-50%);
+    transition: all .3s ease;
+    box-shadow: 0 0 2px 3px rgba(43, 145, 241,.6);
+}
+.ModalResend-error button:hover::before{
+    width: calc(100% + 6px);
+    height: calc(100% + 6px);
+}
+.ModalResend-error h2 span{
+    font-weight: normal;
+    font-size: 45px;
+}
+.ModalResend-loader{
+    --size: 90px;
+    border-width: 10px;
+    right: 50%;
+    top: 50%;
+    transform: translate(50%,-50%);
+    z-index: 0;
+    animation: rotar2 1s ease infinite;
+    border-color: rgba(255, 255, 255,.4);
+    background-color: rgba(255,255,255,.3);
+    border-left-color: rgba(255, 255, 255,.2);
+    box-shadow: inset 0 0 3px rgba(0,0,0,.35),0 0 3px rgba(0,0,0,.35);
+    backdrop-filter: blur(5px);
+}
+.ModalResend-loader._hide_{
+    display: none;
+}
+@keyframes rotar2{
+    to{
+        transform: translate(50%,-50%) rotate(1turn);
+    }
+}
+.ModalResend--cap._hide_{
+    display: none;
+}
+.ModalResend{
+    background-color: white;
+    margin: 20px;
+    max-height: calc(100% - 40px);
+    border-radius: 12px;
+    overflow: hidden;
+    width: 400px;
+    min-height: 220px;
+    color: rgb(38,38,38);
+    animation: BaragattiModalShow .1s ease-out;
+    position: relative;
+    z-index: 1;
+}
+.ModalResend._hide_{
+    display: none;
+}
+.ModalResend h3{
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 8px;
+}
+.ModalResend_p{
+    margin: 12px 32px;
+    margin-top: 32px;
+    text-align: center;
+    text-align: center;
+}
+.ModalResend_p span{
+    padding-top: 16px;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgb(142,142,142);
+}
+.ModalResend--btns{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    padding-top: 16px;
+}
+.ModalResend--btns button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 4px 8px;
+    height: 48px;
+    background-color: #fff;
+    border: none;
+    font-size: 14px;
+    border-top: 1px solid rgb(219,219,219);
+}
+.ModalResend--btns button:first-child{
+    font-weight: bold;
+    color: rgb(237, 73, 86);
+}
+@-webkit-keyframes BaragattiModalShow{
+    0%{
+        opacity:0;
+        -webkit-transform:scale(1.2);
+        transform:scale(1.2);
+    }
+    to{
+        opacity:1;
+        -webkit-transform:scale(1);
+        transform:scale(1)
+    }
+}
+._error_{
+    margin-top: 10px;
+    font-size: 13px;
+    margin-bottom: -10px;
+    color: rgb(253, 65, 52);
+    opacity: .7;
+    padding-left: 5px;
+    padding-right: 15px;
+    width: 100%;
+    position: relative;
+    padding-left: 27px;
+    overflow: hidden;
+    transition: all .3s ease;
+    height: 15px;
+}
+._error_._hide_{
+    height: 0;
+}
+._error_ i{
+    display: inline-flex;
+    width: 15px;
+    height: 15px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgb(253, 65, 52);
+    color: white;
+    font-size: 13px;
+    line-height: 13px;
+    background-color: rgb(253, 65, 52);
+    margin-right: 4px;
+    position: absolute;
+    left: 5px;
+    font-weight: bold;
+    font-style: normal;
+    padding-top: 1px;
+    opacity: 1;
+    transition: all 1s ease;
+}
+._error_._hide_ i{
+    transition: all .1s ease;
+    opacity: 0;
+}
+.ModalLogin--remember ._error_{
+    margin: 0;
+    margin-bottom: 20px;
+}
+form{
+    position: relative;
+}
+form._disabled_::after{
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(255, 255, 255,.5);
+}
+form._disabled_ input[type=submit]{
+    color: transparent;
+}

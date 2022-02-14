@@ -1,0 +1,55 @@
+import {AJAX} from "./engine.js";
+import {SERVERURL} from "./engine.js";
+const email=document.getElementById("email");
+const passwd=document.getElementById("passwd");
+const check=document.getElementById("session");
+const form=document.getElementById("form");
+const errorsMsg=Array.from(document.querySelectorAll("._error_"));
+form.addEventListener("submit",e=>{
+    errorsMsg.map(el=>{
+        el.classList.add("_hide_");
+    });
+    if(!validateInput(email)[0]){
+        e.preventDefault();
+        email.parentNode.querySelector("._error_ span").textContent=validateInput(email)[1];
+        email.parentNode.querySelector("._error_").classList.remove("_hide_");
+    }else if(!validateInput(passwd)[0]){
+        e.preventDefault();
+        passwd.parentNode.querySelector("._error_ span").textContent=validateInput(passwd)[1];
+        passwd.parentNode.querySelector("._error_").classList.remove("_hide_");
+        console.log(validateInput(passwd))
+    }else{
+        e.preventDefault();
+        form.classList.add("_disabled_");
+        submitForm();
+    }
+});
+email.addEventListener("keyup",e=>{
+    form.classList.remove("_err_");
+});
+passwd.addEventListener("keyup",e=>{
+    form.classList.remove("_err_");
+});
+const validateInput=input=>{
+    if(input.value.trim().length==0) return [false,"Ce champ ne peut pas être vide"];
+    else return[true,""];
+}
+const submitForm=()=>{
+    const data=new FormData();
+    data.append("user",email.value);
+    data.append("pass",passwd.value);
+    if(check.checked) data.append("cookie",1);;
+    AJAX(SERVERURL+"cogs_php/engine.php?function=signin","POST",data).then(resolve=>{
+        setTimeout(() => {
+            form.classList.remove("_disabled_");
+            if(resolve!==""){
+                let result=JSON.parse(resolve);
+                if(result.access){
+                    location.href=result.next;
+                }else{
+                    form.classList.add("_err_");
+                }
+            }
+        }, 1500);
+    })
+}

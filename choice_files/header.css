@@ -1,0 +1,755 @@
+.Header{
+    width: 100%;
+    height: var(--header);
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    z-index: 20;
+    left: 0;
+    transition: all .3s ease;
+    /* box-shadow: 0 0 2px rgba(0,0,0,.1); */
+    border-bottom: 2px solid rgba(227,227,227);
+    background-color: #fff;
+}
+:root{
+    --menu-left: 350px;
+    --menu-right: 350px;
+    --menu-bar: 0px;
+}
+.Header._inner_{
+    --menu-right: 580px;
+    --menu-bar: 37px;
+}
+.Header button{
+    --size: 38px;
+    color: rgb(13, 18, 22);
+    --hg: 3px;
+    width: var(--size);
+    height: var(--size);
+    margin-right: 20px;
+    transition: all .3s ease;
+    border-radius: 4px;
+    position: relative;
+    display: inline-flex;
+    background-color: transparent;
+    cursor: pointer;
+}
+.Header button:hover{
+    background-color: rgba(64,87,109,0.07);
+}
+.Header button::before{
+    content: "";
+    position: absolute;
+    top: 10px;
+    width: 70%;
+    height: var(--hg);
+    border-radius: 4px;
+    background-color: currentColor;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow:  0 8px 0 0 currentColor, 0 16px 0 0 currentColor;
+}
+.Header._translate_{
+    box-shadow: 0 0 2px rgba(0,0,0,.1);
+    background-color: rgba(255,255,255,.75);
+    backdrop-filter: blur(5px);
+    /* border-bottom: 1px solid rgba(0,0,0,.05); */
+}
+.Header._translate_ .Header--menu > a{
+    background-color: transparent;
+}
+.Header-logo{
+    display: inline-block;
+    width: calc(100% - (var(--menu-right) + var(--menu-left) + var(--menu-bar)));
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Header-logo a{
+    display: flex;
+    width: 42px;
+    height: 42px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px rgb(252, 239, 242);
+    overflow: hidden;
+    border-radius: 50%;
+    background-color: rgb(252, 239, 242);
+}
+.Header-logo img{
+    max-width: 100%;
+    max-height: 100%;
+}
+._cercleFloat_{
+    display: block;
+    --size: 580px;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    border: 50px solid #ECF6FA;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    transform: translateX(-50%) translateY(-50%);
+}
+.Header ._wrapper_{
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    padding: 0 20px;
+}
+.Header--menu,
+.Header--nav{
+    display: flex;
+    /* position: absolute; */
+    align-items: center;
+    /* right: 0; */
+}
+.Header--nav{
+    width: var(--menu-left);
+}
+.Header--menu{
+    width: var(--menu-right);
+    justify-content: flex-end;
+    display: flex;
+}
+.Header ._wrapper_ .Header--menu{
+    right: 0px;
+}
+.Header._inner_ ._wrapper_ .Header--menu {
+    right: 20px;
+}
+.Header--nav{
+    position: relative;
+    /* top: 3px; */
+}
+.Header--menu li,
+.Header--nav ._link_>a{
+    margin-left:30px ;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.Header--nav ._link_>a.active::before{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 3px;
+    background-color: #000;
+    bottom: -32px;
+}
+.Header--nav ._link_:first-child a{
+    margin-left: 0;
+    margin-right: 8px;
+}
+.Header--nav ._link_>a:hover + div,
+.Header--nav ._link_>a + div:hover{
+    display: grid;
+}
+.Header--nav--panelCalendar ._before_{
+    width: 100px !important;
+    height: 40px;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
+    top: -20px;
+    left: -20px;
+    transform: translateY(-100%);
+    background-color: transparent;
+    border-radius: 0;
+}
+.Header--nav ._link_>a + div{
+    overflow: visible;
+}
+.Header--nav ._link_>a::after{
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: -1px;
+    width: 5px;
+    height: 5px;
+    border: 2px solid #333;
+    border-bottom-right-radius: 2px;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+    margin-left: 8px;
+    position: relative;
+    top: -2px;
+}
+.Header--nav ._link_._notDrop_>a::after{
+    display: none;
+}
+.Header--nav ._link_>a.services{
+    padding-left: 23px;
+}
+.Header--nav ._link_>a.services::before{
+    content: "";
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: currentColor;
+    display: inline-block;
+    box-shadow: 6px 0 0 0 currentColor, 12px 0 0 0 currentColor;
+    left: 0;
+    position: absolute;
+}
+.Header--menu li._actif_{
+    color: #ff357f;
+    border-radius: 5px;
+    font-weight: bold;
+    position: relative;
+}
+.Header--nav ._link_>a._actif_{
+    background-color: rgba(57, 76, 96, 0.15);
+    color: rgb(13, 18, 22);
+    padding: 10px 10px;
+    text-align: center;
+    border-radius: 5px;
+    transition: all .3s ease;
+}
+.Header--nav ._link_>a._actif_:hover{
+    background-color: rgba(64,87,109,0.07);
+}
+.Header--nav ._link_>a._actif_.services{
+    padding-left: 31px;
+    padding-right: 12px;
+}
+.Header--nav ._link_>a._actif_.services::before{
+    left: 8px;
+}
+.Header--nav ._link_>a._actif_.services::after{
+    right: 0px;
+}
+.Header--menu li._actif_::before{
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: currentColor;
+    position: absolute;
+    bottom: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.Header--menu li._languages_{
+    font-weight: normal;
+    margin-left: 0px;
+    display: flex;
+    align-items: center;
+}
+.Header--menu li._languages_ svg{
+    width: 17px;
+}
+.Header--menu li._languages_ > a span{
+    border-right: 1px solid rgba(0,0,0,.1);
+    position: relative;
+    top: -3px;
+    padding: 2px 0;
+    padding-right: 20px;
+    margin-left: 7px;
+}
+.Header--menu li svg{
+    width: 24px;
+}
+.Header--menu li ._badge_{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 18px;
+    padding: 0px 5px;
+    border-radius: 12px;
+    background-color: rgb(77, 87, 102);
+    color: #fff;
+    font-weight: bold;
+    position: relative;
+    top: -7px;
+    margin-left: 5px;
+}
+.Header--menu>a{
+    min-width: 110px;
+    padding: 15px;
+    height: 40px;
+    color: #ff357f;
+    color: #333;
+    border: 2px solid currentColor;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 30px;
+    transition: all .3s ease;
+    background-color: white;
+}
+.Header--menu>a svg{
+    width: 16px;
+    margin-right: 8px;
+}
+
+.Header--user{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.Header--menu-name{
+    font-size: 13px !important;
+    color: rgb(90,95,106) !important;
+    font-weight: normal !important;
+    text-transform: none !important;
+    cursor: pointer;
+}
+.Header--menu-img{
+    --size: 30px;
+    height: var(--size);
+    background-color: purple;
+    width: var(--size);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #ff357f;
+    margin-left: 20px;
+    cursor: pointer;
+    position: relative;
+}
+.Header--menu-img::before{
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: lime;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0 0 0 4px white;
+}
+.Header--menu-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.Header--notifs{
+    color: rgb(77, 87, 102);
+}
+
+.Header--user--menu{
+    position: absolute;
+    top: calc(var(--header) - 15px);
+    right: 0;
+    left: auto;
+    z-index: 2;
+    width: 192px;
+    visibility: hidden;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 5px 1px rgba(var(--jb7,0,0,0),.0975);
+    opacity: 0;
+    transition: all .3s ease-in-out;
+    transform: translateY(-6px);
+}
+._flex_{
+    display: flex;
+}
+._hidden_{
+    display: none !important;
+}
+.Header--user--menu::before{
+    content: "";
+    display: inline-block;
+    width: 50%;
+    height: 20px;
+    background-color: transparent;
+    top: 2px;
+    transform: translateY(-100%);
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+}
+.Header--user--menu:hover,
+.Header--user:hover .Header--user--menu{
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0px);
+}
+.Header--user--menu li{
+    margin-left: 0;
+    font-weight: normal;
+    text-transform: none;
+}
+.Header--user--menu hr{
+    background-color: rgb(219, 219, 219);
+}
+.Header--user--menu li:last-child{
+    margin-bottom: 4px;
+    border-top: 1px solid rgb(219, 219, 219);
+}
+.Header--user--menu a svg{
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+}
+.Header--user--menu a{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 37px;
+    padding: 0 16px;
+    color: rgb(38, 38, 38);
+    font-size: 14px;
+    line-height: 16px;
+    letter-spacing: .3px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.Header--user--menu a:hover{
+    background-color: rgb(250, 250, 250);
+}
+.Header--navigation{
+    width: var(--navigation);
+    height: calc(100vh - var(--header));
+    position: fixed;
+    left: 0;
+    top: var(--header);
+    background-color: white;
+    box-shadow: 0 0 1px rgba(0,0,0,.2);
+    overflow: hidden;
+    --foot: 130px;
+}
+.Header--navigation--content{
+    height: calc(100% - var(--foot));
+    overflow: hidden;
+    padding: 30px 20px;
+    padding-bottom: 10px;
+    overflow-y: auto;
+}
+.Header--navigation--foot{
+    padding: 12px;
+    height: var(--foot);
+    display: flex;
+    text-align: center;
+    font-size: 15px;
+    --svg: 28px;
+}
+.Header--navigation--foot svg{
+    width: var(--svg);
+    height: var(--svg);
+    color: rgb(255, 208, 0);
+}
+.Header--navigation--foot p{
+    width: calc(100% - var(--svg));
+    padding-left: 8px;
+}
+.Header--navigation--foot p span{
+    padding: 7px;
+    background: rgba(255,255,255,.25);
+    margin-top: 10px;
+    display: block;
+    border-radius: 40px;
+    font-size: 13px;
+    font-weight: bold;
+}
+.Header--navigation-card{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(45deg, #ff357f 0%, #9844b7 51%, #ff357f 100%);
+    opacity: .35;
+    color: rgba(255,255,255,.75);
+    display: flex;
+    padding: 15px 20px;
+    cursor: pointer;
+}
+.Header--navigation--user{
+    display: flex;
+    --size: 40px;
+    margin: 30px 10px;
+    margin-top: 7px;
+}
+.Header--navigation--user-img{
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    /* box-shadow: 0 0 0 2px #fff, 0 0 0 3px #555; */
+    background-color: #7300e6;
+    font-size: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+.Header--navigation--user-info{
+    padding-left: 15px;
+    padding-top: 3px;
+}
+.Header--navigation--user-info svg{
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 2px;
+    display: inline-flex;
+}
+.Header--navigation--user-info svg::before{
+    content: "";
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: red;
+    position: relative;
+    left: -12px;
+}
+.Header--navigation--user-info p{
+    font-size: 13px;
+    color: rgba(13, 18, 22, 0.7);
+}
+.Header--navigation--user-info b{
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    font-size: 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 3px;
+    color: rgb(13, 18, 22);
+}
+.Header--navigation nav ul li{
+    margin: 8px 0;
+}
+.Header--navigation nav ul li svg{
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+}
+.Header--navigation nav ul li a{
+    display: flex;
+    width: calc(100% + 10px);
+    align-items: center;
+    padding: 0 15px;
+    height: 40px;
+    color: rgb(13, 18, 22);
+    border-radius: 5px;
+    transition: all .3s ease;
+    font-size: 14px;
+    /* font-weight: bold; */
+}
+.Header--navigation nav ul li._actif_ a{
+    background-color: rgba(64,87,109,0.1);
+    font-weight: bold;
+}
+.Header--navigation nav ul li a:hover{
+    background-color: rgba(64,87,109,0.05);
+}
+.Header--nav--panelServices,
+.Header--nav--panelSms,
+.Header--nav--panelCalendar{
+    position: absolute;
+    width: 800px;
+    top: 45px;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(64,87,109,0.07),0 2px 12px rgba(53,71,90,0.2);
+    padding: 20px;
+    border-radius: 8px;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 0 20px;
+    display: none;
+}
+.Header--nav--panelServices article figure{
+    width: 100%;
+    display: block;
+    height: 120px;
+    background-color: #eaeaea;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+.Header--nav--panelServices article figure img{
+    display: block;
+    width: 100%;
+    min-height: 100%;
+}
+.Header--nav--panelServices article a p,
+.Header--nav--panelSms>div h3,
+.Header--nav--panelCalendar>div h3{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    height: 32px;
+    border-radius: 4px;
+    width: 100%;
+    position: relative;
+    padding: 0 12px;
+    padding-left: 0;
+    display: flex;
+    align-items: center;
+    transition: all .3s ease;
+}
+.Header--nav--panelServices article a:hover p,
+.Header--nav--panelSms>div a{
+    background-color: rgba(64, 87, 109, 0.07);
+    color: rgb(115, 0, 230);
+    padding-left: 12px;
+}
+.Header--nav--panelServices article a p::after,
+.Header--nav--panelSms>div a::after,
+.Header--nav--panelCalendar>div a::after{
+    content: "";
+    display: inline-block;
+    border-color: currentColor;
+    border-top-width: 2px;
+    border-style: solid;
+    border-top: none;
+    border-left: none;
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    transform: rotate(-45deg);
+    position: absolute;
+}
+.Header--nav--panelServices article a p::after,
+.Header--nav--panelSms>div a::after{
+    right: 12px;
+}
+.Header--nav--panelCalendar>div a::after{
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-width: 1.5px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
+}
+.Header--nav--panelServices article > p,
+.Header--nav--panelSms>div,
+.Header--nav--panelCalendar>div{
+    font-size: 13.5px;
+    line-height: 18px;
+    color: rgba(13, 18, 22, 0.8);
+}
+.Header--nav--panelSms,
+.Header--nav--panelCalendar{
+    width: 450px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+.Header--nav--panelSms>div,
+.Header--nav--panelCalendar>div{
+    font-size: 14px;
+}
+.Header--nav--panelSms>div a{
+    display: flex;
+    height: 32px;font-weight: bold;
+    border-radius: 5px;
+    align-items: center;
+    position: relative;
+    margin-top: 12px;
+}
+.Header--nav--panelSms>div h3,
+.Header--nav--panelCalendar>div h3{
+    height: auto;
+}
+.Header--nav--panelSms figure,
+.Header--nav--panelCalendar figure{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 15px;
+    grid-template-rows: repeat(2,1fr);
+    height: 100%;
+}
+.Header--nav--panelSms-img,
+.Header--nav--panelCalendar-img{
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    overflow-y: hidden;
+    background-color: #F2F2F2;
+}
+.Header--nav--panelSms-img img,
+.Header--nav--panelCalendar-img img{
+    width: 100%;
+    min-height: 100%;
+    display: block;
+}
+.Header--nav--panelCalendar{
+    width: 500px;
+    left: 20px;
+}
+.Header--nav--panelCalendar figure{
+    padding-left: 30px;
+}
+.Header--nav--panelCalendar>div a{
+    font-size: 15px;
+    overflow-y: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    /* font-weight: bold; */
+    display: block;
+    padding: 10px 12px;
+    padding-left: 18px;
+    margin-top: 3px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    color: rgba(13, 18, 22,.7);
+    position: relative;
+}
+.Header--nav--panelCalendar>div a:first-child{
+    border-top: 1px solid rgba(0,0,0,.05);
+}
+.Header--nav--panelCalendar > a{
+    grid-column: 1 / 3;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 40px;
+    word-spacing: 3px;
+    background-color: rgba(64, 87, 109, 0.07);
+    color: rgb(115, 0, 230);
+    margin-top: 25px;
+    bottom: 12px;
+    left: 50%;
+}
+.Header--nav--panelSms{
+    display: none;
+}
+.Header--nav--panelCalendar{
+    display: none;
+}
+/* .Header--nav--panelCalendar::before{
+    content: "";
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    background-color: red;
+    left: 0;
+    top: 0;
+    transform: translate(0%,-100%);
+} */
+.Header--scrollAnimation{
+    height: var(--scrollAnimation);
+    background: linear-gradient(45deg,#9844b7 0%, #fa4b8b 20%,#fa4b8b 80%, #9844b7 101%);
+    background: #f82371;
+    position: relative;
+    margin-top: var(--header);
+    top: -2px;
+    /* display: none; */
+    /* z-index: 52; */
+}
+.Header--scrollAnimation marquee{
+    width: var(--size-wrapper);
+    margin: 0 auto;
+    padding: 0 20px;
+    font-size: 12px;
+    font-weight: bold;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    color: rgba(0,0,0,.4);
+    color: rgba(255,255,255,.75);
+}

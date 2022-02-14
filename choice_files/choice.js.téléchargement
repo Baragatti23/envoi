@@ -1,0 +1,38 @@
+const btn_start=document.getElementById("next_button");
+const msgError=document.querySelector(".Create--errorMsg");
+const close_msgError=document.querySelector(".Create--errorMsg ._close_");
+const items=Array.from(document.querySelectorAll(".Create--content--item"));
+items.map(elem=>{
+    elem.addEventListener("click",e=>{
+        items.map(el => el.classList.remove("_active_") );
+        elem.classList.add("_active_");
+        closMsg();
+        if(elem.getAttribute("data-url")!="") {
+            btn_start.href=elem.getAttribute("data-url");
+        }
+    });
+})
+btn_start.addEventListener("click",e=>{
+const items=Array.from(document.querySelectorAll(".Create--content--item"));
+    if(document.querySelector(".Create--content--item._active_")==null){
+        e.preventDefault();
+        msgError.classList.add("_visible_");
+        setTimeout(()=>{
+            closMsg();
+        },15000);
+    }else{
+        location.href=btn_start.href;
+    }
+});
+close_msgError.addEventListener("click",e=>{
+    closMsg();
+});
+const closMsg=()=>{
+    msgError.style.opacity="0";
+    setTimeout(() => {
+        msgError.classList.remove("_visible_");
+        setTimeout(()=>{
+            msgError.style.opacity="1";
+        },200)
+    }, 100);
+}

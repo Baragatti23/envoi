@@ -1,0 +1,163 @@
+const btnAccept=document.querySelector(".ModalUpload-btnFinish");
+const btnClose=document.querySelector(".ModalUpload-btnClose");
+const figures=document.querySelector(".ModalUpload--fullPhotos");
+const showAllPhotos=document.querySelector(".ModalUpload--panelAllPhotos");
+const showAppPhotos=document.querySelector(".ModalUpload--panelAppPhotos");
+const viewFullPhotos=document.querySelector(".ModalUpload--fullPhotos");
+const viewEmpty=document.querySelector(".ModalUpload--vide");
+const inputFile=document.querySelector(".ModalUpload main input[type=file]");
+let FilesSelecteds=[];
+const btnUpPhoto=[document.querySelector(".ModalUpload--vide button"),document.querySelector(".ModalUpload--fullPhotos button")];
+btnUpPhoto.map(el=>{
+    el.addEventListener("click",(e)=>{
+        selectFiles();
+    });  
+})
+let abord_upload_files=false;
+inputFile.addEventListener("change",e=>{
+    abord_upload_files=false;
+    const all_files=e.target.files;
+    const files=[];
+    for(let i=0;i<all_files.length;i++){
+        let type=all_files[i].type.split("/")[1].toUpperCase();
+        if(all_files[i].type.match(/image/) && (type=="JPG" || type=="JPEG" || type=="PNG" || type=="WEBP"))  files.push(all_files[i]);
+    }
+    FilesUploading=[1,files.length];
+    simulationUpload(files).then(resolve=>{
+        if(resolve){
+            console.log("Finalizado");
+        }
+    });  
+})
+figures.classList.add("_hide_");
+viewEmpty.classList.remove("_hide_");
+btnAccept.addEventListener("click",(e)=>{
+    document.querySelector(".ModalUpload--cap").classList.add("_hide_");
+});
+btnClose.addEventListener("click",(e)=>{
+    document.querySelector(".ModalUpload--cap").classList.add("_hide_");
+});
+showAppPhotos.addEventListener("click",(e)=>{
+    showAllPhotos.classList.remove("_active_");
+    showAppPhotos.classList.add("_active_");
+    const array=Array.from(document.querySelectorAll(".ModalUpload main >div"));
+    array.map(el=>{
+        el.classList.add("_hide_");
+    })
+    viewFullPhotos.classList.remove("_hide_");
+});
+showAllPhotos.addEventListener("click",(e)=>{
+    showAllPhotos.classList.add("_active_");
+    showAppPhotos.classList.remove("_active_");
+    const array=Array.from(document.querySelectorAll(".ModalUpload main >div"));
+    array.map(el=>{
+        el.classList.add("_hide_");
+    })
+    viewEmpty.classList.remove("_hide_");
+});
+figures.addEventListener("click",(e)=>{
+    e.stopPropagation();
+    let elems=e.path;
+    let elem=addEventsGroup("figure",elems);
+    if(elem!=null){
+        elem.classList.toggle("_selected_");
+        FilesSelecteds=Array.from(document.querySelectorAll(".ModalUpload--fullPhotos figure._selected_ img"));
+        btnAccept.querySelector("span").textContent=FilesSelecteds.length;
+    }
+},false);
+btnClose.addEventListener("click",()=>{
+
+});
+const addEventsGroup=(selector,elems)=>{
+    let elem=null;
+    for(let i=0;i<elems.length;i++){
+        if(elems[i].tagName!=undefined && (elems[i].tagName.toLowerCase()==selector 
+        || elems[i].querySelector(selector)!=null)){
+            elem=elems[i];
+            break;
+        }
+    }
+    return elem;
+}
+const selectFiles=()=>{
+    inputFile.click();
+}
+function randomText(format){
+    const alphabet=["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+    let retourner="";
+    for (let i = 0; i < format.length; i++) {
+        if(isNaN(format[i]) && format[i]==format[i].toUpperCase()) retourner+=alphabet[parseInt(Math.random()*10)].toUpperCase();
+        else if(!isNaN(format[i])) retourner+=parseInt(Math.random()*10);
+        else retourner+=alphabet[parseInt(Math.random()*10)];
+    }
+    return retourner;
+}
+let progressbar_Uploading=0;
+let FilesUploading=[0,0];
+function simulationUpload(files){
+    if(files.length>0){
+        progressbar_Uploading=100;
+        const date=new Date();
+        let i=files.length-1;
+        showHideUploadingBar(true);
+        document.querySelector(".ModalUpload--fullPhotos .ModalUpload--grid").insertAdjacentHTML("beforeend",`<figure class="_empty_"></figure>`);
+        setTimeout(() => {
+            // if(files[i].type.match(/image/) && !abord_upload_files){
+                let type=files[i].type.split("/")[1].toUpperCase();
+                // if(type=="JPG" || type=="JPEG" || type=="PNG" || type=="WEBP"){
+                    let name="IMG_"+date.getFullYear()+""+(date.getMonth()+1)+""+date.getDay()+""+date.getMinutes()+""+date.getSeconds()+i+randomText("x0xx000xxxx000xxxx00000xxx")+"."+type;
+                    const reader=new FileReader();
+                    reader.readAsDataURL(files[i]);
+                    reader.addEventListener("load",e=>{
+                        let html=`
+                            <figure class="_notEmpty_">
+                                <b>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m15.84 22.25h-7.68a3.05 3.05 0 0 1 -3-2.86l-.91-13.84a.76.76 0 0 1 .2-.55.77.77 0 0 1 .55-.25h14a.75.75 0 0 1 .75.8l-.87 13.84a3.05 3.05 0 0 1 -3.04 2.86zm-10-16 .77 13.05a1.55 1.55 0 0 0 1.55 1.45h7.68a1.56 1.56 0 0 0 1.55-1.45l.81-13z"></path><path xmlns="http://www.w3.org/2000/svg" d="m21 6.25h-18a.75.75 0 0 1 0-1.5h18a.75.75 0 0 1 0 1.5z"></path><path xmlns="http://www.w3.org/2000/svg" d="m15 6.25h-6a.76.76 0 0 1 -.75-.75v-1.8a2 2 0 0 1 1.95-1.95h3.6a2 2 0 0 1 1.95 2v1.75a.76.76 0 0 1 -.75.75zm-5.25-1.5h4.5v-1a.45.45 0 0 0 -.45-.45h-3.6a.45.45 0 0 0 -.45.45z"></path><path xmlns="http://www.w3.org/2000/svg" d="m15 18.25a.76.76 0 0 1 -.75-.75v-8a.75.75 0 0 1 1.5 0v8a.76.76 0 0 1 -.75.75z"></path><path xmlns="http://www.w3.org/2000/svg" d="m9 18.25a.76.76 0 0 1 -.75-.75v-8a.75.75 0 0 1 1.5 0v8a.76.76 0 0 1 -.75.75z"></path><path xmlns="http://www.w3.org/2000/svg" d="m12 18.25a.76.76 0 0 1 -.75-.75v-8a.75.75 0 0 1 1.5 0v8a.76.76 0 0 1 -.75.75z"></path></svg>
+                                </b>
+                                <label for="selected">
+                                    <i>
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512.008 512.008">
+                                            <path d="M502.795,60.572c-11.183-9.782-28.214-8.677-38.023,2.533L177.837,391.028L46.603,251.036    c-10.186-10.833-27.217-11.372-38.077-1.213c-10.86,10.159-11.426,27.244-1.24,38.104l151.579,161.684    c5.12,5.416,12.207,8.488,19.672,8.488h0.458c7.626-0.108,14.794-3.449,19.833-9.189L505.355,98.595    C515.137,87.385,514.005,70.381,502.795,60.572z"></path>
+                                        </svg>
+                                    </i>
+                                    <img src="${e.target.result}" alt="">
+                                </label>
+                            </figure>
+                        `;
+                        const loaders=document.querySelector(" .ModalUpload--fullPhotos .ModalUpload--grid figure._empty_");
+                        loaders.outerHTML=html;
+                    });
+                // }else if(abord_upload_files) console.log("abortar");
+            // }
+            // resolve(true);
+            progressbar_Uploading=0;
+            files.pop();
+            FilesUploading[0]++;
+            showHideUploadingBar(false);
+            simulationUpload(files)
+        }, 500);
+    }
+    return new Promise(function(resolve,reject){
+        const interval=setInterval(() => {
+            if(files.length==0){
+                FilesUploading=[0,0];
+                clearInterval(interval);
+                resolve(true);
+            }
+        }, 250);
+    })
+}
+function showHideUploadingBar(visibility=true){
+    if(visibility){
+        document.querySelector(".ModalUpload--footer>div").classList.remove("_hide_");
+        document.querySelector(".ModalUpload--footer-animeBar>div").style.width=progressbar_Uploading+"%";
+        document.querySelector(".ModalUpload--footer p").innerHTML=`
+            <span>${progressbar_Uploading}%</span> ${FilesUploading[0]} de ${FilesUploading[1]}
+        `
+    }else{
+        document.querySelector(".ModalUpload--footer>div").classList.add("_hide_");
+    }
+}
+// const btnAccept=document.querySelector(".ModalUpload-btnFinish");
+// const btnAccept=document.querySelector(".ModalUpload-btnFinish");
+// const btnAccept=document.querySelector(".ModalUpload-btnFinish");
